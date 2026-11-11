@@ -4,3 +4,4 @@ pydantic
 requests
 resend
 python-dotenv
+python-multipart
