@@ -43,11 +43,11 @@ def landing_page():
             }}
             * {{ box-sizing: border-box; margin: 0; padding: 0; }}
             body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.6; padding: 0; display: flex; flex-direction: column; min-height: 100vh; }}
-            header {{ padding: 24px 40px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; max-width: 1100px; width: 100%; margin: 0 auto; }}
+            header {{ padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; max-width: 1100px; width: 100%; margin: 0 auto; }}
             .logo {{ font-weight: 700; font-size: 18px; letter-spacing: -0.5px; color: var(--text-main); }}
             .logo span {{ color: var(--accent); }}
             .hero {{ max-width: 900px; margin: 60px auto 40px auto; padding: 0 20px; text-align: center; }}
-            .badge {{ background: rgba(56, 189, 248, 0.1); color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.2); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 6px 14px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }}
+            .badge {{ background: rgba(56, 189, 248, 0.1); color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.2); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 6px 14px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }}
             h1 {{ font-size: 42px; font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 16px; color: #ffffff; }}
             .hero-sub {{ font-size: 18px; color: var(--text-muted); max-width: 680px; margin: 0 auto 40px auto; }}
             
@@ -84,7 +84,7 @@ def landing_page():
         <section class="hero">
             <div class="badge">Engineered for Founders & Investors</div>
             <h1>Stress-test your startup thesis before spending a single dollar.</h1>
-            <p class="hero-sub">Submit your product concept or expansion strategy. {APP_NAME} autonomously cross-references historical failure modes, unit economics traps, and go-to-market blindspots.</p>
+            <p class="hero-sub">Submit your product thesis or concept. {APP_NAME} autonomously cross-references historical failures, unit economics traps, and go-to-market blindspots.</p>
         </section>
 
         <section class="grid">
@@ -104,7 +104,7 @@ def landing_page():
             </div>
 
             <div class="form-container">
-                <h2>Request audit</h2>
+                <h2>Request an audit</h2>
                 <p>Confidential and automated. We processes entries continuously.</p>
                 <form action="/submit" method="POST">
                     <label for="founder_email">Work Email</label>
@@ -158,5 +158,73 @@ def handle_submission(founder_email: str = Form(...), thesis: str = Form(...)):
             <a href="/">← Return to main page</a>
         </div>
     </body>
+    </html>
+    """
+    @app.get("/privacy", response_class=HTMLResponse)
+async def privacy_policy():
+    return """
+    <html>
+        <head><title>Privacy Policy - Retrospecty</title></head>
+        <body style="font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333;">
+            <h1>Privacy Policy</h1>
+            <p><strong>Effective Date:</strong> November 2026</p>
+            <p>At Retrospecty (retrospecty.com), we respect your privacy and are committed to protecting any personal information you share with us during startup research intakes and communications.</p>
+            
+            <h2>1. Information We Collect</h2>
+            <p>We collect information you explicitly provide when submitting our intake form, including your name, email address, and project details.</p>
+            
+            <h2>2. How We Use Your Information</h2>
+            <p>Your data is used solely to evaluate startup research inquiries, communicate with you regarding your project, and deliver requested insights. We never sell or share your data with third-party advertisers.</p>
+            
+            <h2>3. Security</h2>
+            <p>We implement secure transmission protocols and restrict access to stored intake data. If you wish to have your submitted data deleted, you can contact us directly.</p>
+            
+            <p><a href="/">&larr; Back to Home</a></p>
+        </body>
+    </html>
+    """
+
+@app.get("/terms", response_class=HTMLResponse)
+async def terms_of_service():
+    return """
+    <html>
+        <head><title>Terms of Service - Retrospecty</title></head>
+        <body style="font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333;">
+            <h1>Terms of Service</h1>
+            <p><strong>Effective Date:</strong> November 2026</p>
+            <p>Welcome to Retrospecty. By accessing retrospecty.com and submitting information through our portal, you agree to these terms.</p>
+            
+            <h2>1. Services</h2>
+            <p>Retrospecty provides startup research intelligence and digital advisory consulting services.</p>
+            
+            <h2>2. Intellectual Property</h2>
+            <p>All content, branding, frameworks, and interface designs on retrospecty.com are the property of Retrospecty and may not be reproduced without explicit permission.</p>
+            
+            <h2>3. Limitation of Liability</h2>
+            <p>Our consulting and research services are provided on an as-is basis for strategic guidance purposes.</p>
+            
+            <p><a href="/">&larr; Back to Home</a></p>
+        </body>
+    </html>
+    """
+
+@app.get("/data-protection", response_class=HTMLResponse)
+async def data_protection():
+    return """
+    <html>
+        <head><title>Data Protection - Retrospecty</title></head>
+        <body style="font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333;">
+            <h1>Data Protection & GDPR Compliance</h1>
+            <p><strong>Effective Date:</strong> November 2026</p>
+            <p>As an operation based in the United Kingdom, Retrospecty aligns data processing practices with standard data protection principles.</p>
+            
+            <h2>Your Rights</h2>
+            <p>You have the right to request access to, correction of, or complete deletion of any personal data you have submitted via our intake forms.</p>
+            
+            <h2>Contact</h2>
+            <p>For any data privacy inquiries or deletion requests, reach out directly through our primary contact channels.</p>
+            
+            <p><a href="/">&larr; Back to Home</a></p>
+        </body>
     </html>
     """
