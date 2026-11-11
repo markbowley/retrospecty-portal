@@ -12,8 +12,8 @@ app = FastAPI()
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 ALLOWED = os.getenv("ALLOWED_CHAT_ID")
 API = f"https://api.telegram.org/bot{TOKEN}"
-APP_NAME = os.getenv("BRAND_NAME", "PreMortem AI")
-DOMAIN_NAME = os.getenv("BRAND_DOMAIN", "premortem.io")
+APP_NAME = os.getenv("BRAND_NAME", "Retrospecty")
+DOMAIN_NAME = os.getenv("BRAND_DOMAIN", "retrospecty.com")
 
 def notify(text):
     if ALLOWED and TOKEN:
@@ -77,54 +77,54 @@ def landing_page():
     </head>
     <body>
         <header>
-            <div class="logo"><span>Mo</span> / {APP_NAME}</div>
-            <div style="font-size: 13px; color: var(--text-muted);">Autonomous Advisory Daemon</div>
+            <div class="logo"><span></span>{APP_NAME}</div>
+            <div style="font-size: 13px; color: var(--text-muted);">Startup Service</div>
         </header>
 
         <section class="hero">
             <div class="badge">Engineered for Founders & Investors</div>
             <h1>Stress-test your startup thesis before spending a single dollar.</h1>
-            <p class="hero-sub">Submit your product concept or expansion strategy. Mo autonomously cross-references historical failure modes, unit economics traps, and go-to-market blindspots.</p>
+            <p class="hero-sub">Submit your product concept or expansion strategy. {APP_NAME} autonomously cross-references historical failure modes, unit economics traps, and go-to-market blindspots.</p>
         </section>
 
         <section class="grid">
             <div class="features">
                 <div class="feature-card">
-                    <h3>1. Historical Autopsy Cross-Matching</h3>
+                    <h3>1. Historical autopsy cross-matching</h3>
                     <p>Cross-examines your business model against vectorized failure case studies from past startups in your sector.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>2. Margin & CAC Trap Detection</h3>
+                    <h3>2. Margin & CAC trap detection</h3>
                     <p>Identifies structural unit-economic flaws, customer acquisition traps, and hidden infrastructure scaling overheads.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>3. Executive Briefing Output</h3>
+                    <h3>3. Executive briefing output</h3>
                     <p>Receive a clear, objective breakdown highlighting top risk vectors and mitigation strategies directly to your inbox.</p>
                 </div>
             </div>
 
             <div class="form-container">
-                <h2>Request Pre-Mortem Audit</h2>
-                <p>Confidential and automated. Mo processes entries continuously.</p>
+                <h2>Request audit</h2>
+                <p>Confidential and automated. We processes entries continuously.</p>
                 <form action="/submit" method="POST">
                     <label for="founder_email">Work Email</label>
                     <input type="email" id="founder_email" name="founder_email" required placeholder="founder@company.com">
                     
                     <label for="thesis">Startup Thesis / Pitch Summary</label>
-                    <textarea id="thesis" name="thesis" required placeholder="Describe your product value prop, target audience, pricing model, and distribution channel..."></textarea>
+                    <textarea id="thesis" name="thesis" required placeholder="Describe your product value prop, target audience, pricing model, and distribution channel."></textarea>
                     
-                    <button type="submit">Run Pre-Mortem Audit →</button>
+                    <button type="submit">Run audit →</button>
                 </form>
             </div>
         </section>
 
         <footer>
             <div class="footer-links">
-                <a href="#">Privacy Policy</a> • 
-                <a href="#">Terms of Service</a> • 
-                <a href="#">Data Protection</a>
+                <a href="/privacy">Privacy Policy</a> • 
+                <a href="/terms">Terms of Service</a> • 
+                <a href="/data-protection">Data Protection</a>
             </div>
-            <p>© 2026 {APP_NAME} ({DOMAIN_NAME}). All rights reserved. Powered by Mo Autonomous Systems.</p>
+            <p>© 2026 {APP_NAME}. All rights reserved. From Bowley Design Ltd.</p>
         </footer>
     </body>
     </html>
@@ -154,7 +154,7 @@ def handle_submission(founder_email: str = Form(...), thesis: str = Form(...)):
     <body>
         <div class="card">
             <h2>Thesis Received</h2>
-            <p>Mo has ingested your thesis for <strong>{founder_email}</strong>. Our autonomous risk engine is generating your structural pre-mortem audit now.</p>
+            <p>{APP_NAME} has ingested your thesis for <strong>{founder_email}</strong>. Our autonomous risk engine is generating your structural audit now.</p>
             <a href="/">← Return to main page</a>
         </div>
     </body>
