@@ -47,7 +47,7 @@ def landing_page():
             .logo {{ font-weight: 700; font-size: 18px; letter-spacing: -0.5px; color: var(--text-main); }}
             .logo span {{ color: var(--accent); }}
             .hero {{ max-width: 900px; margin: 60px auto 40px auto; padding: 0 20px; text-align: center; }}
-            .badge {{ background: rgba(56, 189, 248, 0.1); color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.2); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 6px 14px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }}
+            .badge {{ background: rgba(56, 189, 248, 0.1); color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.2); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 5px 14px 3px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }}
             h1 {{ font-size: 42px; font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 16px; color: #ffffff; }}
             .hero-sub {{ font-size: 18px; color: var(--text-muted); max-width: 680px; margin: 0 auto 40px auto; }}
             
@@ -137,9 +137,9 @@ def handle_submission(founder_email: str = Form(...), thesis: str = Form(...)):
     with open(f"./submissions/{int(time.time())}.json", "w") as f:
         json.dump(submission, f)
     
-    notify(f"📥 *New Startup Intake Received!*\n• *From:* `{founder_email}`\n• *Thesis:* {thesis}\n\n*(Reply `/analyze {thesis}` to run detailed manual check)*")
+    notify(f"📥 *New Startup Intake Received!*\n*From:* `{founder_email}`\n*Thesis:* {thesis}\n\n*(Reply `/analyze {thesis}` to run detailed manual check)*")
     
-    return f"""
+    return """
     <!DOCTYPE html>
     <html lang="en">
     <head><meta charset="UTF-8"><title>Audit Queued — {APP_NAME}</title>
@@ -160,7 +160,7 @@ def handle_submission(founder_email: str = Form(...), thesis: str = Form(...)):
     </body>
     </html>
     """
-    @app.get("/privacy", response_class=HTMLResponse)
+@app.get("/privacy", response_class=HTMLResponse)
 async def privacy_policy():
     return """
     <html>
