@@ -1,10 +1,14 @@
+import hmac
 import html
 import json
 import os
+import re
 import time
+import uuid
 from pathlib import Path
 
-from fastapi import FastAPI, Form
+from fastapi import FastAPI, Form, Header, HTTPException
+from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 import requests
 from dotenv import load_dotenv
@@ -18,6 +22,12 @@ API = f"https://api.telegram.org/bot{TOKEN}"
 APP_NAME = os.getenv("BRAND_NAME", "Retrospecty")
 DOMAIN_NAME = os.getenv("BRAND_DOMAIN", "retrospecty.com")
 HERE = Path(__file__).parent
+
+# Mo, running elsewhere, collects submissions from here every minute using this
+# shared secret. Submissions only wait on this server until he has them.
+INTAKE_SECRET = os.getenv("INTAKE_SECRET", "")
+SUBMISSIONS = HERE / "submissions"
+MAX_WAITING = 200  # stop a flood of junk filling the disk
 
 # The page copy lives in content.json and the sample report in sample_report.md.
 # Mo, the agent, writes both (after approval). These defaults show until he does.
@@ -37,6 +47,10 @@ DEFAULTS = {
     "price_label": "",
     "sample_link_label": "See a sample report",
     "sample_intro": "A real report, produced by the same process yours will be.",
+    "email_label": "Work Email",
+    "thesis_label": "Startup Thesis / Pitch Summary",
+    "thesis_placeholder": "Describe your product value prop, target audience, pricing model, and distribution channel.",
+    "thanks_note": "A free preview of your report will be emailed to you, usually within ten minutes.",
 }
 
 CSS = """
@@ -191,11 +205,16 @@ def landing_page():
             <h2>{e(c["form_heading"])}</h2>
             <p>{e(c["form_note"])}</p>
             <form action="/submit" method="POST">
-                <label for="founder_email">Work Email</label>
+                <label for="founder_email">{e(c["email_label"])}</label>
                 <input type="email" id="founder_email" name="founder_email" required placeholder="founder@company.com">
 
-                <label for="thesis">Startup Thesis / Pitch Summary</label>
-                <textarea id="thesis" name="thesis" required minlength="40" placeholder="Describe your product value prop, target audience, pricing model, and distribution channel."></textarea>
+                <label for="thesis">{e(c["thesis_label"])}</label>
+                <textarea id="thesis" name="thesis" required minlength="40" maxlength="6000" placeholder="{e(c["thesis_placeholder"])}"></textarea>
+
+                <div style="position: absolute; left: -9999px;" aria-hidden="true">
+                    <label for="website">Leave this empty</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
 
                 <button type="submit">{e(c["cta_label"])}</button>
             </form>
@@ -229,22 +248,82 @@ def sample_report():
     return page(f"Sample report — {APP_NAME}", body)
 
 
-@app.post("/submit", response_class=HTMLResponse)
-def handle_submission(founder_email: str = Form(...), thesis: str = Form(...)):
-    submission = {"email": founder_email, "thesis": thesis, "timestamp": time.time()}
-    os.makedirs("./submissions", exist_ok=True)
-    with open(f"./submissions/{int(time.time())}.json", "w") as f:
-        json.dump(submission, f)
-
-    notify(f"New thesis submitted\nFrom: {founder_email}\n\n{thesis}")
-
+def card(title: str, heading: str, text_html: str, status: int = 200) -> HTMLResponse:
     body = f"""
     <div class="card">
-        <h2>Thesis received</h2>
-        <p>Thanks. We have your thesis and will write to <strong>{e(founder_email)}</strong>.</p>
+        <h2>{e(heading)}</h2>
+        <p>{text_html}</p>
         <a class="back" href="/">← Return to main page</a>
     </div>"""
-    return page(f"Thesis received — {APP_NAME}", body)
+    return HTMLResponse(page(f"{title} — {APP_NAME}", body), status_code=status)
+
+
+@app.post("/submit", response_class=HTMLResponse)
+def handle_submission(founder_email: str = Form(...), thesis: str = Form(...), website: str = Form("")):
+    founder_email, thesis = founder_email.strip(), thesis.strip()
+    thanks = card("Idea received", "Idea received",
+                  f"Thanks. {e(load_content()['thanks_note'])} "
+                  f"We will write to <strong>{e(founder_email)}</strong>.")
+    if website.strip():          # only bots fill the hidden field; tell them nothing
+        return thanks
+    if (len(thesis) < 40 or len(thesis) > 6000 or len(founder_email) > 254
+            or not re.fullmatch(r"[^@\s]+@[^@\s]+\.[^@\s]+", founder_email)):
+        return card("Check your details", "Please check your details",
+                    "We need a valid email address and a description of 40 to 6,000 characters.", 400)
+
+    SUBMISSIONS.mkdir(exist_ok=True)
+    if len(list(SUBMISSIONS.glob("*.json"))) >= MAX_WAITING:
+        return card("Busy", "We are very busy", "Please try again in a few minutes.", 503)
+    sid = uuid.uuid4().hex
+    (SUBMISSIONS / f"{sid}.json").write_text(json.dumps(
+        {"id": sid, "email": founder_email, "thesis": thesis, "ts": time.time()}))
+    notify("New idea submitted on the site. Mo will collect it.")
+    return thanks
+
+
+@app.get("/paid", response_class=HTMLResponse)
+def paid():
+    return card("Thank you", "Payment received",
+                "Thank you. Your full report will arrive by email within a few minutes.")
+
+
+# --- collection API for Mo ----------------------------------------------------
+
+def _check(secret: str | None) -> None:
+    if not INTAKE_SECRET:
+        raise HTTPException(503, "Intake is not configured.")
+    if not secret or not hmac.compare_digest(secret, INTAKE_SECRET):
+        raise HTTPException(401, "Not authorised.")
+
+
+class Ack(BaseModel):
+    ids: list[str]
+
+
+@app.get("/api/submissions")
+def list_submissions(x_intake_secret: str | None = Header(default=None)):
+    _check(x_intake_secret)
+    out = []
+    for path in sorted(SUBMISSIONS.glob("*.json"), key=lambda p: p.stat().st_mtime)[:20]:
+        try:
+            out.append(json.loads(path.read_text()))
+        except (OSError, ValueError):
+            continue
+    return {"submissions": out}
+
+
+@app.post("/api/submissions/ack")
+def ack_submissions(ack: Ack, x_intake_secret: str | None = Header(default=None)):
+    _check(x_intake_secret)
+    removed = 0
+    for sid in ack.ids:
+        if re.fullmatch(r"[0-9a-f]{32}", sid):        # never build a path from anything else
+            try:
+                (SUBMISSIONS / f"{sid}.json").unlink()
+                removed += 1
+            except OSError:
+                pass
+    return {"removed": removed}
 
 
 @app.get("/privacy", response_class=HTMLResponse)
