@@ -5,3 +5,4 @@ requests
 resend
 python-dotenv
 python-multipart
+markdown
