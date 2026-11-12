@@ -1,0 +1,25 @@
+{
+  "badge": "New. Written by an AI agent",
+  "headline": "Find out how businesses like yours failed, before you build yours.",
+  "subhead": "Describe your idea. Retrospecty researches real companies that failed doing something similar and compares your idea against them. Every case is named and linked to a public source you can check.",
+  "form_heading": "Describe your idea",
+  "form_note": "Two or three sentences is enough: who it is for, what you sell, how you make money. The report is written by an AI agent from live research. There are no calls or meetings.",
+  "cta_label": "Get my pre-mortem report",
+  "price_label": "£15 per report, one-off",
+  "sample_link_label": "Read a sample report",
+  "sample_intro": "This sample uses an invented idea, not a real customer. Retrospecty is new, so this shows the format, not a track record.",
+  "features": [
+    {
+      "title": "Real, named failures",
+      "body": "Each comparison is a company that actually failed, with a source link you can open and read yourself."
+    },
+    {
+      "title": "Your idea against theirs",
+      "body": "The report shows where your plan resembles theirs, and the traps they fell into."
+    },
+    {
+      "title": "Automated and plain",
+      "body": "An AI agent does the research and writing. No calls, no consultants, no jargon."
+    }
+  ]
+}
