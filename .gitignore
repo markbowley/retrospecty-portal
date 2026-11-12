@@ -16,3 +16,4 @@ uv.lock
 mo_autonomous_worker.py
 telegram_bot.py
 *.md
+submissions/
