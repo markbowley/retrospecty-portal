@@ -73,7 +73,7 @@ CSS = """
             h1 { font-size: 42px; font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 16px; color: #ffffff; }
             .hero-sub { font-size: 18px; color: var(--text-muted); max-width: 680px; margin: 0 auto 40px auto; }
             
-            .grid { display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 1000px; margin: 0 auto 60px auto; padding: 0 20px; text-align: left; }
+            .grid { display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 1000px; margin: 0 auto 60px auto; padding: 0 20px; text-align: center; }
             @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
             
             .features { display: flex; flex-direction: row; gap: 24px; justify-content: center; }
@@ -89,7 +89,7 @@ CSS = """
             input:focus, textarea:focus { outline: none; border-color: var(--accent); }
             textarea { height: 210px; resize: vertical; }
             input#founder_email { max-width: 50%; }
-            button { background: var(--accent); color: #0b0f19; border: none; padding: 14px 24px; font-size: 14px; font-weight: 700; border-radius: 6px; cursor: pointer; width: 100%; transition: all 0.2s; }
+            button { background: var(--accent); color: #0b0f19; max-width: 50%; border: none; padding: 14px 24px; font-size: 14px; font-weight: 700; border-radius: 6px; cursor: pointer; width: 100%; transition: all 0.2s; }
             button:hover { background: var(--accent-hover); color: white; }
             
             footer { margin-top: auto; border-top: 1px solid var(--border); padding: 30px 40px; font-size: 12px; color: var(--text-muted); text-align: center; }
@@ -99,7 +99,7 @@ CSS = """
             .price { font-size: 13px; color: var(--text-main); text-align: center; margin-top: 14px; }
             .sample-link { display: block; text-align: center; margin-top: 10px; font-size: 13px; color: var(--accent); text-decoration: none; }
             .sample-link:hover { text-decoration: underline; }
-            .report { max-width: 720px; margin: 0 auto 60px auto; padding: 36px; background: #ffffff; color: #1a1a1a; border-radius: 12px; font-family: Georgia, "Times New Roman", serif; font-size: 16px; line-height: 1.6; }
+            .report { max-width: 720px; margin: 0 auto 60px auto; background: #ffffff; color: #1a1a1a; border-radius: 12px; font-family: Georgia, "Times New Roman", serif; font-size: 16px; line-height: 1.6; }
             .report h1 { font-size: 25px; color: #111; margin-bottom: 8px; letter-spacing: 0; }
             .report h2 { font-size: 21px; margin: 16px 0 5px; color: #111; }
             .report h3 { font-size: 17px; margin: 12px 0 4px; color: #111; }
@@ -107,6 +107,7 @@ CSS = """
             .report ul { padding-left: 22px; }
             .report a { color: #0369a1; }
             .report hr { border: 0; border-top: 1px solid #ddd; margin: 28px 0; }
+            .report-inner { padding: 36px; }
             .report .email-header { display: block; height: 20px; background-color: var(--text-muted); border-radius: 12px 12px 0 0; }
             .sample-intro { max-width: 720px; margin: 30px auto 24px auto; padding: 0 20px; text-align: center; color: var(--text-muted); }
             .sample-intro h1 { font-size: 30px; }
@@ -208,8 +209,8 @@ def landing_page():
             <h2>{e(c["form_heading"])}</h2>
             <p>{e(c["form_note"])}</p>
             <form action="/submit" method="POST">
-                <label for="founder_email">{e(c["email_label"])}</label>
-                <input type="email" id="founder_email" name="founder_email" required placeholder="founder@company.com">
+                <div style="display: block;"><label for="founder_email">{e(c["email_label"])}</label>
+                <input type="email" id="founder_email" name="founder_email" required placeholder="founder@company.com"></div>
 
                 <label for="thesis">{e(c["thesis_label"])}</label>
                 <textarea id="thesis" name="thesis" required minlength="40" maxlength="6000" placeholder="{e(c["thesis_placeholder"])}"></textarea>
@@ -246,7 +247,7 @@ def sample_report():
         <h1>Sample report</h1>
         <a class="back" href="/">← Get one for your own idea</a>
     </section>
-    <article class="report"><div class="email-header"></div>{rendered}</article>"""
+    <article class="report"><div class="email-header"></div><div class="report-inner">{rendered}</div></article>"""
     return page(f"Sample report — {APP_NAME}", body)
 
 
