@@ -88,7 +88,7 @@ CSS = """
             input, textarea { width: 100%; padding: 12px 14px; background: #0b0f19; border: 1px solid var(--border); border-radius: 6px; color: var(--text-main); font-size: 14px; margin-bottom: 20px; font-family: inherit; }
             input:focus, textarea:focus { outline: none; border-color: var(--accent); }
             textarea { height: 210px; resize: vertical; }
-            input#founder_email { max-width: 50%; }
+            input#founder_email { max-width: 50%; margin:0; }
             button { background: var(--accent); color: #0b0f19; max-width: 50%; border: none; padding: 14px 24px; font-size: 14px; font-weight: 700; border-radius: 6px; cursor: pointer; width: 100%; transition: all 0.2s; }
             button:hover { background: var(--accent-hover); color: white; }
             
@@ -208,10 +208,9 @@ def landing_page():
         <div class="form-container">
             <h2>{e(c["form_heading"])}</h2>
             <form action="/submit" method="POST">
-                <div style="display: flex; flex-direction: row;"><label for="founder_email">{e(c["email_label"])}</label>
+                <div style="display: flex; flex-direction: row; justify-content: center; gap: 20px; margin: 20px 0 10px 0;align-items: center;"><label for="founder_email">{e(c["email_label"])}</label>
                 <input type="email" id="founder_email" name="founder_email" required placeholder="founder@company.com"></div>
 
-                <label for="thesis">{e(c["thesis_label"])}</label>
                 <textarea id="thesis" name="thesis" required minlength="40" maxlength="6000" placeholder="{e(c["thesis_placeholder"])}"></textarea>
 
                 <div style="position: absolute; left: -9999px;" aria-hidden="true">
