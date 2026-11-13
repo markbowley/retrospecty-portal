@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <link rel="stylesheet" href="/static/style.css?v={{ css_version }}">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="/" style="color: inherit; text-decoration: none;">{{ app_name }}</a></div>
+        <div style="font-size: 13px; color: var(--text-muted);">Startup Service</div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <div class="footer-links">
+            <a href="/privacy">Privacy Policy</a> •
+            <a href="/terms">Terms of Service</a> •
+            <a href="/data-protection">Data Protection</a>
+        </div>
+        <p>© 2026 {{ app_name }}. All rights reserved. From Bowley Design Ltd.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{# Used for short messages: idea received, payment received, errors. #}
+{% block content %}
+    <div class="card">
+        <h2>{{ heading }}</h2>
+        <p>{{ message }}{% if email %} We will write to <strong>{{ email }}</strong>.{% endif %}</p>
+        <a class="back" href="/">← Return to main page</a>
+    </div>
+{% endblock %}
