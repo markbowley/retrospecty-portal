@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{# report_html is Mo's sample report, already converted from Markdown and made safe. #}
+{% block content %}
+    <section class="sample-intro">
+        <h1>Sample report</h1>
+        <a class="back" href="/">← Get one for your own idea</a>
+    </section>
+    <article class="report"><div class="email-header"></div><div class="report-inner">{{ report_html | safe }}</div></article>
+{% endblock %}

@@ -6,3 +6,4 @@ resend
 python-dotenv
 python-multipart
 markdown
+jinja2
