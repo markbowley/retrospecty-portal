@@ -1,25 +1,26 @@
 {
-  "badge": "New. Written by an AI agent",
-  "headline": "Find out how businesses like yours failed, before you build yours.",
-  "subhead": "Describe your idea. Retrospecty researches real companies that failed doing something similar and compares your idea against them. Every case is named and linked to a public source you can check.",
+  "badge": "For founders & startups",
+  "headline": "Before you build or raise, benchmark your idea against actual, comparable failures",
+  "subhead": "Retrospecty researches and compares past businesses or products that failed doing something similar to your idea. You get a report of analysis, including links to sources.",
   "form_heading": "Describe your idea",
-  "form_note": "Two or three sentences is enough: who it is for, what you sell, how you make money. A free preview comes by email. An AI agent writes it from live research. No calls or meetings.",
+  "form_note": "Free preview by email. Written by an AI agent.",
   "cta_label": "Get my free preview",
   "price_label": "Free preview. Full report $24, one-off",
   "sample_link_label": "Read a sample report",
   "sample_intro": "This sample uses an invented idea, not a real customer. Retrospecty is new, so this shows the format, not a track record.",
   "features": [
     {
-      "title": "Real, named failures",
+      "title": "Historical data",
       "body": "Each comparison is a company that actually failed, with a source link you can open and read yourself."
     },
     {
-      "title": "Your idea against theirs",
-      "body": "The report shows where your plan resembles theirs, and the traps they fell into."
+      "title": "Detailed analysis",
+      "body": "Retrospecty analyzes where your plan resembles others, and the traps they fell into."
     },
     {
-      "title": "Automated and plain",
-      "body": "An AI agent does the research and writing. No calls, no consultants, no jargon."
+      "title": "Plain speaking",
+      "body": "Our thorough AI agent does the research and analysis in plain English, no jargon."
     }
-  ]
+  ],
+  "thesis_placeholder": "No need for a full pitch deck, just summarize in a few sentences, including: target audience, value prop, pricing and distribution."
 }
