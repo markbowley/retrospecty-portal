@@ -48,7 +48,7 @@ DEFAULTS = {
     "sample_link_label": "See a sample report",
     "sample_intro": "A real report, produced by the same process yours will be.",
     "email_label": "Work Email",
-    "thesis_label": "Startup Thesis / Pitch Summary",
+    "thesis_label": "Startup idea",
     "thesis_placeholder": "Describe your product value prop, target audience, pricing model, and distribution channel.",
     "thanks_note": "A free preview of your report will be emailed to you, usually within ten minutes.",
 }
@@ -108,7 +108,7 @@ CSS = """
             .report a { color: #0369a1; }
             .report hr { border: 0; border-top: 1px solid #ddd; margin: 28px 0; }
             .report-inner { padding: 36px; }
-            .report .email-header { display: block; height: 20px; background-color: var(--text-muted); border-radius: 12px 12px 0 0; }
+            .report .email-header { display: block; height: 50px; background-color: var(--text-muted); border-radius: 12px 12px 0 0; }
             .sample-intro { max-width: 720px; margin: 30px auto 24px auto; padding: 0 20px; text-align: center; color: var(--text-muted); }
             .sample-intro h1 { font-size: 30px; }
             .back { color: var(--accent); text-decoration: none; font-size: 13px; }
@@ -207,9 +207,8 @@ def landing_page():
 
         <div class="form-container">
             <h2>{e(c["form_heading"])}</h2>
-            <p>{e(c["form_note"])}</p>
             <form action="/submit" method="POST">
-                <div style="display: block;"><label for="founder_email">{e(c["email_label"])}</label>
+                <div style="display: flex; flex-direction: row;"><label for="founder_email">{e(c["email_label"])}</label>
                 <input type="email" id="founder_email" name="founder_email" required placeholder="founder@company.com"></div>
 
                 <label for="thesis">{e(c["thesis_label"])}</label>
