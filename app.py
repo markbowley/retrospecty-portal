@@ -73,10 +73,10 @@ CSS = """
             h1 { font-size: 42px; font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 16px; color: #ffffff; }
             .hero-sub { font-size: 18px; color: var(--text-muted); max-width: 680px; margin: 0 auto 40px auto; }
             
-            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1000px; margin: 0 auto 60px auto; padding: 0 20px; text-align: left; }
+            .grid { display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 1000px; margin: 0 auto 60px auto; padding: 0 20px; text-align: left; }
             @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
             
-            .features { display: flex; flex-direction: column; gap: 24px; justify-content: center; }
+            .features { display: flex; flex-direction: row; gap: 24px; justify-content: center; }
             .feature-card { background: var(--card-bg); border: 1px solid var(--border); padding: 20px; border-radius: 8px; }
             .feature-card h3 { font-size: 16px; margin-bottom: 6px; color: var(--accent); }
             .feature-card p { font-size: 14px; color: var(--text-muted); margin: 0; }
@@ -87,7 +87,8 @@ CSS = """
             label { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; color: var(--text-muted); }
             input, textarea { width: 100%; padding: 12px 14px; background: #0b0f19; border: 1px solid var(--border); border-radius: 6px; color: var(--text-main); font-size: 14px; margin-bottom: 20px; font-family: inherit; }
             input:focus, textarea:focus { outline: none; border-color: var(--accent); }
-            textarea { height: 110px; resize: vertical; }
+            textarea { height: 210px; resize: vertical; }
+            input#founder_email { max-width: 50%; }
             button { background: var(--accent); color: #0b0f19; border: none; padding: 14px 24px; font-size: 14px; font-weight: 700; border-radius: 6px; cursor: pointer; width: 100%; transition: all 0.2s; }
             button:hover { background: var(--accent-hover); color: white; }
             
@@ -99,13 +100,14 @@ CSS = """
             .sample-link { display: block; text-align: center; margin-top: 10px; font-size: 13px; color: var(--accent); text-decoration: none; }
             .sample-link:hover { text-decoration: underline; }
             .report { max-width: 720px; margin: 0 auto 60px auto; padding: 36px; background: #ffffff; color: #1a1a1a; border-radius: 12px; font-family: Georgia, "Times New Roman", serif; font-size: 16px; line-height: 1.6; }
-            .report h1 { font-size: 28px; color: #111; margin-bottom: 8px; letter-spacing: 0; }
-            .report h2 { font-size: 21px; margin: 32px 0 10px; color: #111; }
-            .report h3 { font-size: 17px; margin: 24px 0 8px; color: #111; }
+            .report h1 { font-size: 25px; color: #111; margin-bottom: 8px; letter-spacing: 0; }
+            .report h2 { font-size: 21px; margin: 16px 0 5px; color: #111; }
+            .report h3 { font-size: 17px; margin: 12px 0 4px; color: #111; }
             .report p, .report ul { margin-bottom: 14px; }
             .report ul { padding-left: 22px; }
             .report a { color: #0369a1; }
             .report hr { border: 0; border-top: 1px solid #ddd; margin: 28px 0; }
+            .report .email-header { display: block; height: 20px; background-color: var(--text-muted); border-radius: 12px 12px 0 0; }
             .sample-intro { max-width: 720px; margin: 30px auto 24px auto; padding: 0 20px; text-align: center; color: var(--text-muted); }
             .sample-intro h1 { font-size: 30px; }
             .back { color: var(--accent); text-decoration: none; font-size: 13px; }
@@ -151,6 +153,7 @@ def page(title: str, body: str) -> str:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <title>{e(title)}</title>
     <style>{CSS}</style>
 </head>
@@ -241,10 +244,9 @@ def sample_report():
     body = f"""
     <section class="sample-intro">
         <h1>Sample report</h1>
-        <p class="hero-sub">{e(c["sample_intro"])}</p>
         <a class="back" href="/">← Get one for your own idea</a>
     </section>
-    <article class="report">{rendered}</article>"""
+    <article class="report"><div class="email-header"></div>{rendered}</article>"""
     return page(f"Sample report — {APP_NAME}", body)
 
 
