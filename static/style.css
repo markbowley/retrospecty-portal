@@ -45,7 +45,7 @@ footer { margin-top: auto; border-top: 1px solid var(--border); padding: 30px 40
 .price { font-size: 13px; color: var(--text-main); text-align: center; margin-top: 14px; }
 .sample-link { display: block; text-align: center; margin-top: 10px; font-size: 13px; color: var(--accent); text-decoration: none; }
 .sample-link:hover { text-decoration: underline; }
-.report { max-width: 720px; margin: 0 auto 60px auto; background: #ffffff; color: #1a1a1a; border-radius: 12px; font-family: Georgia, "Times New Roman", serif; font-size: 16px; line-height: 1.6; }
+.report { max-width: 720px; margin: 0 auto 60px auto; background: #ffffff; color: #1a1a1a; border-radius: 12px; font-family: sans-serif; font-size: 16px; line-height: 1.6; }
 .report h1 { font-size: 25px; color: #111; margin-bottom: 8px; letter-spacing: 0; }
 .report h2 { font-size: 21px; margin: 16px 0 5px; color: #111; }
 .report h3 { font-size: 17px; margin: 12px 0 4px; color: #111; }
