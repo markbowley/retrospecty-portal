@@ -37,7 +37,7 @@ input#founder_email { max-width: 50%; margin:0; }
 button { background: var(--accent); color: #0b0f19; max-width: 50%; border: none; padding: 14px 24px; font-size: 14px; font-weight: 700; border-radius: 6px; cursor: pointer; width: 100%; transition: all 0.2s; }
 button:hover { background: var(--accent-hover); color: white; }
 .quote {
-  margin: 5em 0;
+  margin:0;
   padding: 1em;
   text-align: center;
 }
