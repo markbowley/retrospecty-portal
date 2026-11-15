@@ -39,8 +39,6 @@ button:hover { background: var(--accent-hover); color: white; }
 .quote {
   margin: 5em 0;
   padding: 1em;
-  background: black;
-  color: white;
   text-align: center;
 }
 blockquote {
@@ -51,7 +49,6 @@ blockquote {
   color: var(--text-main);
 }
 figcaption cite a {
-  color: white;
   text-decoration: none;
   font-style: normal;
   color: var(--text-muted);
