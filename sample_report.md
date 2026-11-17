@@ -1,4 +1,4 @@
-# Retrospecty report
+# Retrospecty pre-mortem
 
 *12 November 2026*
 
@@ -7,8 +7,6 @@
 ## Survival score: 22/100
 
 Meal kits are a hard business even for well-funded operators, and you would be entering at a low price point with little room to cut costs or raise prices. Gousto and HelloFresh already discount a first box by up to 60%, and your customers' demand follows the term calendar. The score is not lower only because a defined student audience in dense halls could cut your acquisition and delivery costs, but nothing available shows that this works.
-
-`///// End of preview – Full report follows /////`
 
 ## Structural traps
 
