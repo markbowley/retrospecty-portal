@@ -129,6 +129,11 @@ def sample_report(request: Request):
     return render(request, "sample.html", f"Sample report — {APP_NAME}", report_html=rendered)
 
 
+@app.get("/about", response_class=HTMLResponse)
+def about(request: Request):
+    return render(request, "about.html", f"About — {APP_NAME}")
+
+
 @app.post("/submit", response_class=HTMLResponse)
 def handle_submission(request: Request, founder_email: str = Form(...), thesis: str = Form(...),
                       website: str = Form("")):
