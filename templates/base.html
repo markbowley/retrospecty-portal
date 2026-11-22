@@ -14,13 +14,14 @@
     {% block announcement %}{% endblock %}
     <header>
         <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw-clock preview-icon"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg><a href="/" style="color: inherit; text-decoration: none;">{{ app_name }}</a></div>
-        <div style="font-size: 13px; color: var(--text-muted);">Startup Service</div>
+        <nav class="header-nav"><a href="/about">About</a></nav>
     </header>
 
     {% block content %}{% endblock %}
 
     <footer>
         <div class="footer-links">
+            <a href="/about">About</a> •
             <a href="/privacy">Privacy Policy</a> •
             <a href="/terms">Terms of Service</a> •
             <a href="/data-protection">Data Protection</a>
