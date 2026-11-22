@@ -20,7 +20,18 @@
     <section class="grid">
         <div class="features">
             {% for f in c.features %}
-            <div class="feature-card"><h3>{{ f.title }}</h3><p>{{ f.body }}</p></div>
+            <div class="feature-card">
+                {# Icons go by position: first, second, third card. Mo writes the titles. #}
+                {% if loop.index == 1 %}
+                <svg class="feature-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+                {% elif loop.index == 2 %}
+                <svg class="feature-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8,18h8V16H8v2Zm0-4h8V12H8v2ZM6,22q-0.82,0-1.41-0.59T4,20V4Q4,3.17 4.59,2.59T6,2h8l6,6V20q0,0.82-0.59,1.41T18,22H6ZM13,9V4H6V20H18V9H13ZM6,4V9V4V9V20V4Z"/></svg>
+                {% elif loop.index == 3 %}
+                <svg class="feature-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/><path d="m16 19 2 2 4-4"/></svg>
+                {% endif %}
+                <h3>{{ f.title }}</h3>
+                <p>{{ f.body }}</p>
+            </div>
             {% endfor %}
         </div>
     <section class="quote">

@@ -24,7 +24,8 @@ h1 { font-size: 42px; font-weight: 800; letter-spacing: -1px; line-height: 1.15;
 .features { display: flex; flex-direction: row; gap: 24px; justify-content: center; }
 @media (max-width: 768px) { .features { display: flex; flex-direction: column; gap: 24px; justify-content: center; } }
 .feature-card { background: var(--card-bg); border: 1px solid var(--border); padding: 20px; border-radius: 8px; }
-.feature-card h3 { font-size: 16px; margin-bottom: 6px; color: var(--accent); }
+.feature-icon { display: block; color: var(--accent); margin: 0 auto 12px; }
+.feature-card h3 { font-size: 16px; margin-bottom: 6px; color: var(--text-main); }
 .feature-card p { font-size: 14px; color: var(--text-muted); margin: 0; }
 
 .form-container { background: var(--card-bg); border: 1px solid var(--border); padding: 32px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
