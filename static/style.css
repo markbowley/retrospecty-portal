@@ -15,7 +15,7 @@ header { padding: 24px 40px; display: flex; justify-content: space-between; alig
 .logo svg {  }
 .hero { max-width: 900px; margin: 60px auto 40px auto; padding: 0 20px; text-align: center; }
 .badge { background: rgba(56, 189, 248, 0.1); color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.2); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 5px 14px 3px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
-h1 { font-size: 42px; font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 16px; color: #ffffff; }
+h1 { font-size: 45px; font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 16px; color: #ffffff; }
 .hero-sub { font-size: 18px; color: var(--text-muted); max-width: 680px; margin: 0 auto 40px auto; }
 
 .grid { display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 1000px; margin: 0 auto 60px auto; padding: 0 20px; text-align: center; }
