@@ -118,7 +118,7 @@ footer { margin-top: auto; border-top: 1px solid var(--border); padding: 30px 40
 .header-nav a:hover { color: var(--text-main); }
 
 /* About page: long-form text on the dark background */
-.about-hero { margin-bottom: 24px; }
+.about-hero { margin-bottom: 24px; max-width: 640px; }
 .about-hero .hero-sub { margin-bottom: 0; }
 .prose { max-width: 640px; margin: 0 auto 80px auto; padding: 0 20px; font-size: 17px; color: var(--text-muted); }
 .prose p { margin-bottom: 20px; }
