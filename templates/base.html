@@ -11,6 +11,7 @@
     <title>{{ title }}</title>
 </head>
 <body>
+    {% block announcement %}{% endblock %}
     <header>
         <div class="logo"><a href="/" style="color: inherit; text-decoration: none;">{{ app_name }}</a></div>
         <div style="font-size: 13px; color: var(--text-muted);">Startup Service</div>
