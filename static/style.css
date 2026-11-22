@@ -95,9 +95,9 @@ footer { margin-top: auto; border-top: 1px solid var(--border); padding: 30px 40
 
 /* Sticky bar */
     .sticky-bar {
-      --bar-bg: var(--card-bg);
-      --bar-text: var(--text-main);
-      --bar-link: var(--accent);
+      --bar-bg: var(--accent);
+      --bar-text: var(--border);
+      --bar-link: var(--border);
       --bar-link-hover: var(--accent-hover);
       --bar-muted: var(--text-muted);
       --bar-border: var(--border);
