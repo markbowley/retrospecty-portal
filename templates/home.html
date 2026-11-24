@@ -35,7 +35,7 @@
                 <p class="small-note" >Submissions are not shared publicly, only used to research your report</p>
                 <button type="submit">{{ c.cta_label }}</button>
             </form>
-            {% if c.price_label.strip() %}<p class="price">{{ c.price_label }}</p>{% endif %}
+            {% if c.price_label.strip() %}<p class="price">{price_label} <strong>{price_now}</strong> {price_note}<s class="price-was">{price_was}</s></p>{% endif %}
             {% if has_sample %}<a class="sample-link" href="/sample">{{ c.sample_link_label }}</a>{% endif %}
         </div>
               <div class="features">
